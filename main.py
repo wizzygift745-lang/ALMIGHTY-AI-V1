@@ -44,7 +44,7 @@ def create_app() -> FastAPI:
         audit_log("error", "unhandled-exception", str(request.url.path), repr(exc)[:500])
         return JSONResponse({"detail": "Internal server error"}, status_code=500)
 
-    static_dir = Path(__file__).resolve().parent.parent / "static"
+    static_dir = Path(__file__).resolve().parent / "static"
     app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
     @app.get("/{path:path}")
